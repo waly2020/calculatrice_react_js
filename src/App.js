@@ -5,11 +5,18 @@ function App() {
   const [inputValue,setInputValue] = useState("");
   const [disabledInput,setDisabledInput] = useState("");
 
-  const addValue = (visibleValu,disabledValue) =>{
-    setInputValue(inputValue + visibleValu);
-    // disabledInput += (disabledValue ? disabledValue : visibleValu);
-    setDisabledInput(disabledInput + (disabledValue ?? visibleValu));
-    console.log(disabledInput);
+  const addValue = (visibleValu = "",disabledValue) =>{
+    const operator = ["+","-","*","/"];
+    if(visibleValu.match(/[0-9]/)){
+      setInputValue(inputValue + visibleValu);
+      setDisabledInput(disabledInput + (disabledValue ?? visibleValu));
+    }else{
+      if(!operator.includes(disabledInput[disabledInput.length - 1])){
+        console.log(visibleValu,inputValue[inputValue.length - 1]);
+        setInputValue(inputValue + visibleValu);
+        setDisabledInput(disabledInput + (disabledValue ?? visibleValu));
+      }
+    }
   }
   const calcul = () =>{
     setInputValue(eval(disabledInput));
@@ -37,11 +44,12 @@ function App() {
       <Buttons onClick={() =>{addValue("7")}}>7</Buttons>
       <Buttons onClick={() =>{addValue("8")}}>8</Buttons>
       <Buttons onClick={() =>{addValue("9")}}>9</Buttons>
-      <Buttons onClick={() =>{addValue("x","*")}} className="yellow">x</Buttons>
+      {/* ÷ */}
+      <Buttons onClick={() =>{addValue("×","*")}} className="yellow">×</Buttons>
       <Buttons onClick={clear} className="red">C</Buttons>
       <Buttons onClick={() =>{addValue("0")}}>0</Buttons>
       <Buttons className="yellow" onClick={calcul}>=</Buttons>
-      <Buttons onClick={() =>{addValue("/","/")}} className="yellow">/</Buttons>
+      <Buttons onClick={() =>{addValue("÷","/")}} className="yellow">÷</Buttons>
       </div>
     </div>
     </div>
