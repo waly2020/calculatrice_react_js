@@ -30,3 +30,6 @@
 ## Auteur
 
 Cette calculatrice a été créée par [Waly le dev](https://github.com/waly2020).
+
+## Lien
+Vous pouvez voir un aperçu [sur ce lien](https://calculatrice-r5w2.onrender.com/){:target="_blank"}.
